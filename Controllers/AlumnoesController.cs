@@ -93,6 +93,25 @@ namespace WebApi1.Controllers
                 return BadRequest("El alumno no cuenta con calificaciones para ese periodo");
             }
         }
+        [HttpGet]
+        public IHttpActionResult getHistorial(int id)
+        {
+            var calificaciones = db.DbCalificaciones.Where(m => m.IdAlumnos.Id == id).Include(m => m.IdGrupo).Include(m => m.IdGrupo.IdMateria).ToList();
+            if (calificaciones.Count > 0)
+            {
+                List<ViewBoleta> lista = new List<ViewBoleta>();
+                foreach (var item in calificaciones)
+                {
+                    ViewBoleta objeto = new ViewBoleta { Calificacion = item.Calificacion, Grupo = item.IdGrupo.Clave, Materia = item.IdGrupo.IdMateria.Nombre };
+                    lista.Add(objeto);
+                }
+                return Ok(lista.OrderBy(m=>m.Grupo));
+            }
+            else
+            {
+                return BadRequest("El alumno no cuenta con materias cursadas");
+            }
+        }
         
         [HttpGet]
         public IQueryable mostrarCarrerasAlumno(int id)

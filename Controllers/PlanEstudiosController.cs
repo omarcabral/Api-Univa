@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebApi1.Models;
 
 namespace WebApi1.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PlanEstudiosController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -37,6 +39,8 @@ namespace WebApi1.Controllers
 
         // PUT: api/PlanEstudios/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult PutPlanEstudios(int id, PlanEstudios planEstudios)
         {
             if (!ModelState.IsValid)
@@ -72,6 +76,8 @@ namespace WebApi1.Controllers
 
         // POST: api/PlanEstudios
         [ResponseType(typeof(PlanEstudios))]
+        [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult PostPlanEstudios(PlanEstudios planEstudios)
         {
             if (!ModelState.IsValid)
@@ -95,6 +101,8 @@ namespace WebApi1.Controllers
 
         // DELETE: api/PlanEstudios/5
         [ResponseType(typeof(PlanEstudios))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [HttpDelete]
         public IHttpActionResult DeletePlanEstudios(int id)
         {
             PlanEstudios planEstudios = db.DbPlan.Find(id);

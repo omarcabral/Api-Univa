@@ -307,10 +307,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2018 13:04:24</publishTime>
     </File>
     <File Include="bin/WebApi1.dll">
-      <publishTime>04/07/2020 15:25:21</publishTime>
+      <publishTime>04/09/2020 14:17:02</publishTime>
     </File>
     <File Include="bin/WebApi1.pdb">
-      <publishTime>04/07/2020 15:25:21</publishTime>
+      <publishTime>04/09/2020 14:17:02</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -394,7 +394,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/20/2020 20:40:16</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/07/2020 15:02:09</publishTime>
+      <publishTime>04/07/2020 17:55:43</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/20/2020 20:40:02</publishTime>

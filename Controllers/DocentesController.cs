@@ -36,6 +36,26 @@ namespace WebApi1.Controllers
 
             return Ok(docente);
         }
+        [HttpGet]
+        public IHttpActionResult getHistorial(int id)
+        {
+            var grupos = db.DbGrupo.Where(m => m.IdDocente.Id == id).Include(m=>m.IdDocente).Include(m=>m.IdMateria).Include(m=>m.IdPeriodo).ToList();
+            if (grupos.Count > 0)
+            {
+                List<ViewHistorialDocente> lista = new List<ViewHistorialDocente>();
+                foreach (var item in grupos)
+                {
+                    ViewHistorialDocente objeto = new ViewHistorialDocente { Grupo = item.Clave, IdGrupo = item.Id, Materia = item.IdMateria.Nombre, Periodo = item.IdPeriodo.Nombre };
+                    lista.Add(objeto);
+                }
+                return Ok(lista.OrderBy(m => m.Periodo));
+            }
+            else
+            {
+                return BadRequest("El docente no ha impartido clases");
+            }
+
+        }
 
         [ResponseType(typeof(Docente))]
         [HttpPost]

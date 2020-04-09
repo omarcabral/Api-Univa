@@ -85,12 +85,13 @@ namespace WebApi1.Controllers
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult PostCalificaciones(Calificaciones calificaciones)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+           
             calificaciones.IdAlumnos = db.DbAlumnos.Find(calificaciones.IdAlumnos.Id);
+            if (calificaciones.IdAlumnos == null)
+                return BadRequest("El alumno no fue encontrado");
             calificaciones.IdGrupo = db.DbGrupo.Find(calificaciones.IdGrupo.Id);
+            if (calificaciones.IdGrupo == null)
+                return BadRequest("El grupo no fue encontrado");
             db.DbCalificaciones.Add(calificaciones);
             db.SaveChanges();
 

@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebApi1.Models;
 
 namespace WebApi1.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CarrerasController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,10 +25,9 @@ namespace WebApi1.Controllers
         }
 
         [HttpGet]
-        [ActionName("ByPlan")]
-        public IQueryable<Carrera> ByPlan(int idPlan)
+        public IQueryable<Carrera> ByPlan(int id)
         {
-            return this.db.DbCarreras.Where(m => m.IdPlan.Id == idPlan);
+            return this.db.DbCarreras.Where(m => m.IdPlan.Id == id);
         }
 
         // GET: api/Carreras/5
@@ -44,6 +45,8 @@ namespace WebApi1.Controllers
 
         // PUT: api/Carreras/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult PutCarrera(int id, Carrera carrera)
         {
             if (!ModelState.IsValid)
@@ -79,6 +82,8 @@ namespace WebApi1.Controllers
 
         // POST: api/Carreras
         [ResponseType(typeof(Carrera))]
+        [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult PostCarrera(Carrera carrera)
         {
             
@@ -101,6 +106,8 @@ namespace WebApi1.Controllers
 
         // DELETE: api/Carreras/5
         [ResponseType(typeof(Carrera))]
+        [HttpDelete]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult DeleteCarrera(int id)
         {
             Carrera carrera = db.DbCarreras.Find(id);

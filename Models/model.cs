@@ -106,5 +106,13 @@ namespace WebApi1.Models
         public int Calificacion { get; set; }
     }
 
+    public class ViewHistorialDocente
+    {
+        public int IdGrupo { get; set; }
+        public string Grupo { get; set; }
+        public string Periodo { get; set; }
+        public string Materia { get; set; }
+    }
+
 
 }
